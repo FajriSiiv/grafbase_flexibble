@@ -8,7 +8,7 @@ const User = g
     avatarUrl: g.url(),
     description: g.string().length({ min: 2, max: 1000 }).optional(),
     githubUrl: g.url().optional(),
-    linkedinUrl: g.url().optional(),
+    linkedInUrl: g.url().optional(),
     projects: g
       .relation(() => Project)
       .list()
@@ -46,3 +46,5 @@ export default config({
     rules: (rules) => rules.private(),
   },
 });
+
+// 1:14:00
