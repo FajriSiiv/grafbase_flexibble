@@ -1,7 +1,10 @@
 "use client";
 import { SessionInterface } from "@/common.types";
+import { categoryFilters } from "@/constants";
 import Image from "next/image";
 import React, { ChangeEvent } from "react";
+import CategoryMenu from "./CategoryMenu";
+import FormField from "./FormField";
 
 type Props = {
   type: string;
@@ -12,8 +15,15 @@ const ProjectForm = ({ type, session }: Props) => {
   const handleFormSubmit = (e: React.FormEvent) => {};
   const handleChangeImage = (e: ChangeEvent<HTMLInputElement>) => {};
 
+  const handleStateChange = (fieldName: string, value: string) => {};
+
   const form = {
     image: "",
+    title: "",
+    description: "",
+    liveSiteURL: "",
+    githubUrl: "",
+    category: "",
   };
 
   return (
@@ -39,10 +49,54 @@ const ProjectForm = ({ type, session }: Props) => {
           />
         )}
       </div>
+      <FormField
+        title="Title"
+        state={form.title}
+        placeholder="Flexibble"
+        setState={(value) => handleStateChange("title", value)}
+      />
+      <FormField
+        title="Description"
+        state={form.description}
+        placeholder="Your project description...."
+        setState={(value) => handleStateChange("description", value)}
+      />
+      <FormField
+        type="url"
+        title="Website URL"
+        state={form.liveSiteURL}
+        placeholder="https://github.com/"
+        setState={(value) => handleStateChange("liveSiteURL", value)}
+      />
+      <FormField
+        type="url"
+        title="Github URL"
+        state={form.githubUrl}
+        placeholder="https://github.com/FajriSiiv"
+        setState={(value) => handleStateChange("githubUrl", value)}
+      />
+
+      <FormField
+        title="Title"
+        state={form.title}
+        placeholder="Flexibble"
+        setState={(value) => handleStateChange("title", value)}
+      />
+
+      {/* Custom Category */}
+      <CategoryMenu
+        title="Category"
+        state={form.category}
+        filters={categoryFilters}
+        setState={(value) => handleStateChange("category", value)}
+      />
+
+      {/* Button */}
+      <div className="flexStart w-full">
+        <button>Create</button>
+      </div>
     </form>
   );
 };
 
 export default ProjectForm;
-
-// 2:03:00
